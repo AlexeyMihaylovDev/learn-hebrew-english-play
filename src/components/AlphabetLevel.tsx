@@ -91,7 +91,7 @@ const AlphabetLevel: React.FC<AlphabetLevelProps> = ({
         <Card className="level-card text-center space-y-8 animate-bounce-in">
           <div className="space-y-6">
             {/* Large Letter Display */}
-            <div onClick={handleLetterClick} className="text-9xl font-bold bg-gradient-primary bg-clip-text text-transparent cursor-pointer transition-all duration-300 hover:scale-110 animate-float bg-slate-200">
+            <div onClick={handleLetterClick} className="text-9xl font-bold bg-gradient-primary bg-clip-text text-transparent cursor-pointer transition-all duration-300 hover:scale-110 animate-float bg-slate-200 rounded-sm">
               {currentAlphabet.letter}
             </div>
 
