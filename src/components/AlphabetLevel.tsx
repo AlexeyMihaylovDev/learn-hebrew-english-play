@@ -18,32 +18,32 @@ const AlphabetLevel: React.FC<AlphabetLevelProps> = ({
   const [stars, setStars] = useState(0);
   
   const alphabet = [
-    { letter: 'A', phonetic: '/eɪ/', word: 'Apple', emoji: '🍎' },
-    { letter: 'B', phonetic: '/biː/', word: 'Ball', emoji: '⚽' },
-    { letter: 'C', phonetic: '/siː/', word: 'Cat', emoji: '🐱' },
-    { letter: 'D', phonetic: '/diː/', word: 'Dog', emoji: '🐶' },
-    { letter: 'E', phonetic: '/iː/', word: 'Elephant', emoji: '🐘' },
-    { letter: 'F', phonetic: '/ef/', word: 'Fish', emoji: '🐠' },
-    { letter: 'G', phonetic: '/dʒiː/', word: 'Grape', emoji: '🍇' },
-    { letter: 'H', phonetic: '/eɪtʃ/', word: 'House', emoji: '🏠' },
-    { letter: 'I', phonetic: '/aɪ/', word: 'Ice cream', emoji: '🍦' },
-    { letter: 'J', phonetic: '/dʒeɪ/', word: 'Juice', emoji: '🧃' },
-    { letter: 'K', phonetic: '/keɪ/', word: 'Kite', emoji: '🪁' },
-    { letter: 'L', phonetic: '/el/', word: 'Lion', emoji: '🦁' },
-    { letter: 'M', phonetic: '/em/', word: 'Mouse', emoji: '🐭' },
-    { letter: 'N', phonetic: '/en/', word: 'Nose', emoji: '👃' },
-    { letter: 'O', phonetic: '/oʊ/', word: 'Orange', emoji: '🍊' },
-    { letter: 'P', phonetic: '/piː/', word: 'Pizza', emoji: '🍕' },
-    { letter: 'Q', phonetic: '/kjuː/', word: 'Queen', emoji: '👸' },
-    { letter: 'R', phonetic: '/ɑr/', word: 'Rainbow', emoji: '🌈' },
-    { letter: 'S', phonetic: '/es/', word: 'Sun', emoji: '☀️' },
-    { letter: 'T', phonetic: '/tiː/', word: 'Tree', emoji: '🌳' },
-    { letter: 'U', phonetic: '/juː/', word: 'Umbrella', emoji: '☂️' },
-    { letter: 'V', phonetic: '/viː/', word: 'Violin', emoji: '🎻' },
-    { letter: 'W', phonetic: '/ˈdʌbəljuː/', word: 'Water', emoji: '💧' },
-    { letter: 'X', phonetic: '/eks/', word: 'Xylophone', emoji: '🎵' },
-    { letter: 'Y', phonetic: '/waɪ/', word: 'Yacht', emoji: '⛵' },
-    { letter: 'Z', phonetic: '/ziː/', word: 'Zebra', emoji: '🦓' }
+    { letter: 'A', word: 'Apple', emoji: '🍎', example: 'A is for Apple - red and sweet!' },
+    { letter: 'B', word: 'Ball', emoji: '⚽', example: 'B is for Ball - let\'s play!' },
+    { letter: 'C', word: 'Cat', emoji: '🐱', example: 'C is for Cat - soft and furry!' },
+    { letter: 'D', word: 'Dog', emoji: '🐶', example: 'D is for Dog - our best friend!' },
+    { letter: 'E', word: 'Elephant', emoji: '🐘', example: 'E is for Elephant - big and strong!' },
+    { letter: 'F', word: 'Fish', emoji: '🐠', example: 'F is for Fish - swimming in water!' },
+    { letter: 'G', word: 'Grape', emoji: '🍇', example: 'G is for Grape - purple and juicy!' },
+    { letter: 'H', word: 'House', emoji: '🏠', example: 'H is for House - where we live!' },
+    { letter: 'I', word: 'Ice cream', emoji: '🍦', example: 'I is for Ice cream - cold and yummy!' },
+    { letter: 'J', word: 'Juice', emoji: '🧃', example: 'J is for Juice - fresh and sweet!' },
+    { letter: 'K', word: 'Kite', emoji: '🪁', example: 'K is for Kite - flying high!' },
+    { letter: 'L', word: 'Lion', emoji: '🦁', example: 'L is for Lion - king of animals!' },
+    { letter: 'M', word: 'Mouse', emoji: '🐭', example: 'M is for Mouse - small and quick!' },
+    { letter: 'N', word: 'Nose', emoji: '👃', example: 'N is for Nose - we smell with it!' },
+    { letter: 'O', word: 'Orange', emoji: '🍊', example: 'O is for Orange - round and citrus!' },
+    { letter: 'P', word: 'Pizza', emoji: '🍕', example: 'P is for Pizza - cheesy and delicious!' },
+    { letter: 'Q', word: 'Queen', emoji: '👸', example: 'Q is for Queen - royal and elegant!' },
+    { letter: 'R', word: 'Rainbow', emoji: '🌈', example: 'R is for Rainbow - colorful and beautiful!' },
+    { letter: 'S', word: 'Sun', emoji: '☀️', example: 'S is for Sun - bright and warm!' },
+    { letter: 'T', word: 'Tree', emoji: '🌳', example: 'T is for Tree - tall and green!' },
+    { letter: 'U', word: 'Umbrella', emoji: '☂️', example: 'U is for Umbrella - keeps us dry!' },
+    { letter: 'V', word: 'Violin', emoji: '🎻', example: 'V is for Violin - makes beautiful music!' },
+    { letter: 'W', word: 'Water', emoji: '💧', example: 'W is for Water - clear and refreshing!' },
+    { letter: 'X', word: 'Xylophone', emoji: '🎵', example: 'X is for Xylophone - musical instrument!' },
+    { letter: 'Y', word: 'Yacht', emoji: '⛵', example: 'Y is for Yacht - sailing on the sea!' },
+    { letter: 'Z', word: 'Zebra', emoji: '🦓', example: 'Z is for Zebra - black and white stripes!' }
   ];
 
   const playSound = async (text: string) => {
@@ -195,8 +195,8 @@ const AlphabetLevel: React.FC<AlphabetLevelProps> = ({
                   </Button>
                 </div>
                 
-                <p id="letter-word-connection" className="text-xl text-gray-600 bg-white/70 px-6 py-3 rounded-full inline-block shadow-sm">
-                  <span className="font-bold text-purple-600">{currentAlphabet.letter}</span> for <span className="font-semibold text-gray-800">{currentAlphabet.word}</span>
+                <p id="letter-word-connection" className="text-lg text-gray-600 bg-gradient-to-r from-purple-50 to-pink-50 px-6 py-4 rounded-2xl inline-block shadow-sm border border-purple-200">
+                  {currentAlphabet.example}
                 </p>
               </div>
             </div>

@@ -20,9 +20,10 @@ interface Level {
 interface LevelMapProps {
   onSelectLevel: (levelId: number) => void;
   completedLevels: Set<number>;
+  onShowLevelMenu: () => void;
 }
 
-const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels }) => {
+const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onShowLevelMenu }) => {
   const { t } = useLanguage();
 
   const levels: Level[] = [
@@ -57,13 +58,23 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels }) =
 
   return (
     <div id="level-map-container" className="min-h-screen p-4 space-y-6">
-      <header id="level-map-header" className="text-center space-y-2 animate-slide-up">
+      <header id="level-map-header" className="text-center space-y-4 animate-slide-up">
         <h1 id="level-map-title" className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
           {t('levelMap')}
         </h1>
         <p id="level-map-subtitle" className="text-xl text-gray-600">
           {t('chooseLanguage')}
         </p>
+        
+        {/* Level Menu Button */}
+        <Button
+          id="level-menu-btn"
+          onClick={onShowLevelMenu}
+          className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-lg py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          size="lg"
+        >
+          📚 {t('moreLearningLevels')}
+        </Button>
       </header>
 
       <div id="levels-grid" className="max-w-4xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
