@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# Learn Hebrew English Play
 
-## Project info
+Интерактивное образовательное приложение для изучения английского языка с поддержкой иврита.
 
-**URL**: https://lovable.dev/projects/1e22e63e-18ff-423c-bf58-6e6182faaeb5
+## Особенности
 
-## How can I edit this code?
+- 🎯 **Двуязычная поддержка** - иврит и английский
+- 🎮 **Интерактивные игры** - изучение алфавита и слов
+- 🔊 **Звуковое сопровождение** - произношение через Web Speech API
+- ⭐ **Система прогресса** - звезды и блокировка уровней
+- 📱 **Адаптивный дизайн** - работает на всех устройствах
+- 🎨 **Современный UI** - красивые анимации и градиенты
 
-There are several ways of editing your application.
+## Уровни обучения
 
-**Use Lovable**
+1. **Алфавит и звуки** - изучение английских букв с фонетикой
+2. **Простые слова** - сопоставление слов с картинками
+3. **Простые фразы** - базовые разговорные выражения
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1e22e63e-18ff-423c-bf58-6e6182faaeb5) and start prompting.
+## Технологии
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18** с TypeScript
+- **Vite** для сборки
+- **Tailwind CSS** для стилизации
+- **Radix UI** компоненты
+- **React Router** для навигации
+- **React Query** для управления состоянием
 
-**Use your preferred IDE**
+## Установка и запуск
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Установка зависимостей
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Запуск в режиме разработки
 npm run dev
+
+# Сборка для продакшена
+npm run build
+
+# Предварительный просмотр сборки
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## Структура проекта
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+├── components/          # React компоненты
+│   ├── ui/             # UI компоненты (shadcn/ui)
+│   ├── AlphabetLevel.tsx
+│   ├── WordsLevel.tsx
+│   ├── LanguageSelector.tsx
+│   └── LevelMap.tsx
+├── contexts/            # React контексты
+│   └── LanguageContext.tsx
+├── pages/               # Страницы приложения
+│   ├── Index.tsx
+│   └── NotFound.tsx
+├── assets/              # Статические ресурсы
+├── hooks/               # Пользовательские хуки
+└── lib/                 # Утилиты
+```
 
-**Use GitHub Codespaces**
+## Разработка
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Приложение использует современный стек технологий и следует лучшим практикам React разработки:
 
-## What technologies are used for this project?
+- **TypeScript** для типобезопасности
+- **ESLint** для качества кода
+- **Tailwind CSS** для стилизации
+- **Компонентная архитектура** для переиспользования
 
-This project is built with:
+## Лицензия
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/1e22e63e-18ff-423c-bf58-6e6182faaeb5) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+MIT License

@@ -56,27 +56,29 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels }) =
   ];
 
   return (
-    <div className="min-h-screen p-4 space-y-6">
-      <header className="text-center space-y-2 animate-slide-up">
-        <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent text-shadow">
+    <div id="level-map-container" className="min-h-screen p-4 space-y-6">
+      <header id="level-map-header" className="text-center space-y-2 animate-slide-up">
+        <h1 id="level-map-title" className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
           {t('levelMap')}
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p id="level-map-subtitle" className="text-xl text-gray-600">
           {t('chooseLanguage')}
         </p>
       </header>
 
-      <div className="max-w-4xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div id="levels-grid" className="max-w-4xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {levels.map((level, index) => (
           <Card 
             key={level.id}
-            className={`level-card relative overflow-hidden ${level.locked ? 'opacity-60' : ''} 
-              animate-bounce-in`}
+            id={`level-card-${level.id}`}
+            className={`bg-white/90 backdrop-blur-sm shadow-2xl relative overflow-hidden border-2 ${
+              level.locked ? 'opacity-60 border-gray-200' : 'border-purple-200'
+            } animate-bounce-in hover:shadow-xl transition-all duration-300 hover:scale-105`}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="relative">
               {/* Level Image */}
-              <div className="aspect-square w-full mb-4 relative overflow-hidden rounded-2xl">
+              <div id={`level-image-${level.id}`} className="aspect-square w-full mb-4 relative overflow-hidden rounded-2xl">
                 <img 
                   src={level.icon} 
                   alt={t(level.titleKey)}
@@ -85,38 +87,42 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels }) =
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 
                 {/* Level Number Badge */}
-                <Badge className="absolute top-2 left-2 bg-gradient-primary text-white font-bold text-lg px-3 py-1">
+                <Badge 
+                  id={`level-badge-${level.id}`}
+                  className="absolute top-2 left-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg px-3 py-1 shadow-lg"
+                >
                   {t('level')} {level.id}
                 </Badge>
 
                 {/* Lock Overlay */}
                 {level.locked && (
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <div id={`level-lock-overlay-${level.id}`} className="absolute inset-0 bg-black/40 flex items-center justify-center">
                     <Lock className="w-12 h-12 text-white" />
                   </div>
                 )}
               </div>
 
               {/* Level Info */}
-              <div className="space-y-3">
+              <div id={`level-info-${level.id}`} className="space-y-3 p-4">
                 <div className="space-y-1">
-                  <h3 className="text-xl font-bold text-foreground">
+                  <h3 id={`level-title-${level.id}`} className="text-xl font-bold text-gray-800">
                     {t(level.titleKey)}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p id={`level-description-${level.id}`} className="text-sm text-gray-600">
                     {t(level.descKey)}
                   </p>
                 </div>
 
                 {/* Stars Display */}
-                <div className="flex items-center gap-1">
+                <div id={`level-stars-${level.id}`} className="flex items-center gap-1">
                   {[1, 2, 3].map((starNum) => (
                     <Star
                       key={starNum}
+                      id={`level-star-${level.id}-${starNum}`}
                       className={`w-6 h-6 ${
                         starNum <= level.stars 
-                          ? 'text-star-gold fill-star-gold star-icon' 
-                          : 'text-muted-foreground'
+                          ? 'text-yellow-400 fill-yellow-400' 
+                          : 'text-gray-400'
                       }`}
                     />
                   ))}
@@ -124,14 +130,16 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels }) =
 
                 {/* Action Button */}
                 <Button
+                  id={`level-action-btn-${level.id}`}
                   onClick={() => !level.locked && onSelectLevel(level.id)}
                   disabled={level.locked}
-                  className={`w-full ${level.locked 
-                    ? 'bg-level-locked cursor-not-allowed' 
-                    : level.completed 
-                      ? 'bg-gradient-success' 
-                      : 'bg-gradient-accent'
-                  } text-white font-bold transition-all duration-300 hover:scale-105`}
+                  className={`w-full font-bold transition-all duration-300 hover:scale-105 ${
+                    level.locked 
+                      ? 'bg-gray-300 cursor-not-allowed text-gray-500' 
+                      : level.completed 
+                        ? 'bg-gradient-to-r from-green-500 to-purple-500 text-white shadow-lg' 
+                        : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                  }`}
                   size="lg"
                 >
                   {level.locked ? (
