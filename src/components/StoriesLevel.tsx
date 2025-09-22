@@ -3,15 +3,15 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Volume2, ArrowLeft, Star, BookOpen, Image, ChevronLeft, ChevronRight, Languages } from 'lucide-react';
+import { Volume2, ArrowLeft, Star, BookOpen, ChevronLeft, ChevronRight, Languages } from 'lucide-react';
 import { STORIES_DATA } from '@/data/gameData';
 
-interface ReadingLevelProps {
+interface StoriesLevelProps {
   onBack: () => void;
   onComplete: () => void;
 }
 
-const ReadingLevel: React.FC<ReadingLevelProps> = ({
+const StoriesLevel: React.FC<StoriesLevelProps> = ({
   onBack,
   onComplete
 }) => {
@@ -21,7 +21,8 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
   const [completedStories, setCompletedStories] = useState<Set<number>>(new Set());
   const [showTranslation, setShowTranslation] = useState(false);
 
-  const stories = STORIES_DATA;
+  // Filter only story type (not comics)
+  const stories = STORIES_DATA.filter(story => story.type === 'story');
 
   const currentStoryData = stories[currentStory];
 
@@ -72,29 +73,29 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
   const isLastPage = currentPage === currentStoryData.content.length - 1;
 
   return (
-    <div id="reading-level-container" className="min-h-screen p-4 space-y-6">
+    <div id="stories-level-container" className="min-h-screen p-4 space-y-6">
       {/* Header */}
-      <header id="reading-header" className="flex items-center justify-between animate-slide-up">
+      <header id="stories-header" className="flex items-center justify-between animate-slide-up">
         <Button 
-          id="reading-back-btn"
+          id="stories-back-btn"
           onClick={onBack} 
           variant="outline" 
           size="lg" 
           className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none hover:scale-105 shadow-lg"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          {t('levelMap')}
+          {t('backToLevelMap')}
         </Button>
 
-        <div id="reading-info-container" className="flex items-center gap-4">
+        <div id="stories-info-container" className="flex items-center gap-4">
           <Badge id="story-counter-badge" variant="secondary" className="text-lg px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200">
-            Story {currentStory + 1} of {stories.length}
+            {t('story')} {currentStory + 1} {t('of')} {stories.length}
           </Badge>
-          <div id="reading-stars-container" className="flex items-center gap-1">
+          <div id="stories-stars-container" className="flex items-center gap-1">
             {[1, 2, 3].map(starNum => (
               <Star 
                 key={starNum} 
-                id={`reading-star-${starNum}`}
+                id={`stories-star-${starNum}`}
                 className={`w-6 h-6 transition-all duration-300 ${
                   starNum <= completedStories.size 
                     ? 'text-yellow-400 fill-yellow-400 animate-bounce' 
@@ -107,13 +108,13 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
       </header>
 
       {/* Main Content */}
-      <div id="reading-main-content" className="max-w-4xl mx-auto space-y-8">
-        <div id="reading-title-section" className="text-center space-y-2 animate-slide-up">
-          <h1 id="reading-title" className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Reading Stories
+      <div id="stories-main-content" className="max-w-4xl mx-auto space-y-8">
+        <div id="stories-title-section" className="text-center space-y-2 animate-slide-up">
+          <h1 id="stories-title" className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            {t('storiesLevel')}
           </h1>
-          <p id="reading-subtitle" className="text-xl text-gray-600">
-            Read stories and comics to improve your English!
+          <p id="stories-subtitle" className="text-xl text-gray-600">
+            {t('storiesDesc')}
           </p>
         </div>
 
@@ -123,11 +124,7 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
             {/* Story Header */}
             <div id="story-header" className="text-center space-y-4">
               <div className="flex items-center justify-center gap-3">
-                {currentStoryData.type === 'comic' ? (
-                  <Image className="w-8 h-8 text-purple-600" />
-                ) : (
-                  <BookOpen className="w-8 h-8 text-purple-600" />
-                )}
+                <BookOpen className="w-8 h-8 text-purple-600" />
                 <h2 id="story-title" className="text-3xl font-bold text-gray-800">
                   {currentStoryData.title}
                 </h2>
@@ -137,27 +134,23 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                 <Badge 
                   id="story-type-badge"
                   variant="outline" 
-                  className={`px-4 py-2 ${
-                    currentStoryData.type === 'comic' 
-                      ? 'bg-blue-50 text-blue-700 border-blue-200' 
-                      : 'bg-green-50 text-green-700 border-green-200'
-                  }`}
+                  className="px-4 py-2 bg-green-50 text-green-700 border-green-200"
                 >
-                  {currentStoryData.type === 'comic' ? '📚 Comic' : '📖 Story'}
+                  📖 {t('story')}
                 </Badge>
                 
                 <Badge 
                   id="story-level-badge"
                   variant="outline" 
                   className={`px-4 py-2 ${
-                    currentStoryData.level === 'beginner' 
+                    currentStoryData.level === 'easy' 
                       ? 'bg-green-50 text-green-700 border-green-200' 
-                      : currentStoryData.level === 'intermediate'
+                      : currentStoryData.level === 'medium'
                         ? 'bg-yellow-50 text-yellow-700 border-yellow-200'
                         : 'bg-red-50 text-red-700 border-red-200'
                   }`}
                 >
-                  {currentStoryData.level}
+                  {t(currentStoryData.level)}
                 </Badge>
               </div>
             </div>
@@ -167,9 +160,9 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
               {/* Page Counter */}
               <div id="page-counter" className="flex justify-between items-center">
                 <Badge id="page-badge" variant="outline" className="text-sm bg-purple-50 text-purple-700 border-purple-200">
-                  Page {currentPage + 1} of {currentStoryData.content.length}
+                  {t('page')} {currentPage + 1} {t('of')} {currentStoryData.content.length}
                 </Badge>
-                <div id="reading-level-indicator" className="text-sm text-gray-600 font-semibold">
+                <div id="stories-level-indicator" className="text-sm text-gray-600 font-semibold">
                   Level 4
                 </div>
               </div>
@@ -177,15 +170,6 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
               {/* Story Text */}
               <div id="story-text-container" className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-3xl p-8 border-2 border-purple-200">
                 <div className="space-y-6">
-                  {/* Comic Images */}
-                  {currentStoryData.type === 'comic' && currentStoryData.images && (
-                    <div id="comic-image" className="text-center">
-                      <div className="text-8xl mb-4">
-                        {currentStoryData.images[currentPage]}
-                      </div>
-                    </div>
-                  )}
-                  
                   {/* Story Text */}
                   <div id="story-text" className="text-center space-y-4">
                     <p className="text-2xl font-medium text-gray-800 leading-relaxed">
@@ -280,7 +264,7 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                   size="lg"
                   className="hover:scale-105 transition-transform bg-white shadow-lg border-purple-200 text-purple-700 hover:bg-purple-50 disabled:opacity-50"
                 >
-{t('previousStory')}
+                  {t('previousStory')}
                 </Button>
                 
                 <Button 
@@ -291,7 +275,7 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                   size="lg"
                   className="hover:scale-105 transition-transform bg-white shadow-lg border-purple-200 text-purple-700 hover:bg-purple-50 disabled:opacity-50"
                 >
-{t('nextStory')}
+                  {t('nextStory')}
                 </Button>
               </div>
 
@@ -300,7 +284,7 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                 <div id="story-completion-message" className="animate-bounce-in space-y-4 p-6 bg-gradient-to-r from-green-100 to-purple-100 rounded-2xl border-2 border-green-300 shadow-lg">
                   <div className="text-6xl animate-bounce mx-auto w-fit">🎉</div>
                   <p className="text-2xl font-bold text-green-600">
-                    Story Completed!
+                    {t('storyCompleted')}
                   </p>
                   <p className="text-lg text-gray-600">
                     Great job reading "{currentStoryData.title}"!
@@ -313,18 +297,18 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                 <div id="final-completion" className="animate-bounce-in space-y-6 p-8 bg-gradient-to-r from-green-100 to-purple-100 rounded-3xl border-2 border-green-300 shadow-xl">
                   <div className="text-8xl animate-bounce mx-auto w-fit">🏆</div>
                   <h2 className="text-4xl font-bold text-green-600">
-                    All Stories Completed!
+                    {t('allStoriesCompleted')}
                   </h2>
                   <p className="text-xl text-gray-600">
                     You've read all the stories! You're becoming a great reader!
                   </p>
                   <Button 
-                    id="reading-complete-btn"
+                    id="stories-complete-btn"
                     onClick={onComplete} 
                     className="bg-gradient-to-r from-green-500 to-purple-500 text-white text-xl py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
                     size="lg"
                   >
-                    Continue Learning ⭐
+                    {t('continueLearning')} ⭐
                   </Button>
                 </div>
               )}
@@ -336,4 +320,4 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
   );
 };
 
-export default ReadingLevel;
+export default StoriesLevel;

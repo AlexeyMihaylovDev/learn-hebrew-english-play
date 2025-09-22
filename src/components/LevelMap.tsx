@@ -49,10 +49,64 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onS
       id: 3,
       titleKey: 'phrasesLevel',
       descKey: 'phrasesDesc',
-      icon: alphabetIcon, // Placeholder
+      icon: alphabetIcon,
       completed: completedLevels.has(3),
       stars: completedLevels.has(3) ? 3 : 0,
       locked: !completedLevels.has(2)
+    },
+    {
+      id: 4,
+      titleKey: 'grammarLevel',
+      descKey: 'grammarDesc',
+      icon: wordsIcon,
+      completed: completedLevels.has(4),
+      stars: completedLevels.has(4) ? 3 : 0,
+      locked: !completedLevels.has(3)
+    },
+    {
+      id: 5,
+      titleKey: 'listeningLevel',
+      descKey: 'listeningDesc',
+      icon: alphabetIcon,
+      completed: completedLevels.has(5),
+      stars: completedLevels.has(5) ? 3 : 0,
+      locked: !completedLevels.has(4)
+    },
+    {
+      id: 6,
+      titleKey: 'speakingLevel',
+      descKey: 'speakingDesc',
+      icon: wordsIcon,
+      completed: completedLevels.has(6),
+      stars: completedLevels.has(6) ? 3 : 0,
+      locked: !completedLevels.has(5)
+    },
+    {
+      id: 7,
+      titleKey: 'vocabularyLevel',
+      descKey: 'vocabularyDesc',
+      icon: alphabetIcon,
+      completed: completedLevels.has(7),
+      stars: completedLevels.has(7) ? 3 : 0,
+      locked: !completedLevels.has(6)
+    },
+    {
+      id: 8,
+      titleKey: 'pronunciationLevel',
+      descKey: 'pronunciationDesc',
+      icon: wordsIcon,
+      completed: completedLevels.has(8),
+      stars: completedLevels.has(8) ? 3 : 0,
+      locked: !completedLevels.has(7)
+    },
+    {
+      id: 9,
+      titleKey: 'conversationLevel',
+      descKey: 'conversationDesc',
+      icon: alphabetIcon,
+      completed: completedLevels.has(9),
+      stars: completedLevels.has(9) ? 3 : 0,
+      locked: !completedLevels.has(8)
     }
   ];
 

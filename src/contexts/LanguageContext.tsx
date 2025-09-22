@@ -348,6 +348,114 @@ const translations: Translation = {
   finalScore: {
     he: 'ציון סופי',
     en: 'Final Score'
+  },
+  
+  // Navigation
+  previousStory: {
+    he: 'סיפור קודם',
+    en: 'Previous Story'
+  },
+  nextStory: {
+    he: 'סיפור הבא',
+    en: 'Next Story'
+  },
+  showTranslation: {
+    he: 'הצג תרגום',
+    en: 'Show Translation'
+  },
+  hideTranslation: {
+    he: 'הסתר תרגום',
+    en: 'Hide Translation'
+  },
+  advancedReading: {
+    he: 'קריאה מתקדמת',
+    en: 'Advanced Reading'
+  },
+  
+  // New Levels
+  phrasesLevel: {
+    he: 'ביטויים וצירופים',
+    en: 'Phrases & Expressions'
+  },
+  phrasesDesc: {
+    he: 'למדו ביטויים שימושיים באנגלית',
+    en: 'Learn useful English phrases'
+  },
+  grammarLevel: {
+    he: 'דקדוק בסיסי',
+    en: 'Basic Grammar'
+  },
+  grammarDesc: {
+    he: 'למדו כללי דקדוק בסיסיים',
+    en: 'Learn basic grammar rules'
+  },
+  listeningLevel: {
+    he: 'האזנה והבנה',
+    en: 'Listening & Comprehension'
+  },
+  listeningDesc: {
+    he: 'שפרו את כישורי ההאזנה שלכם',
+    en: 'Improve your listening skills'
+  },
+  speakingLevel: {
+    he: 'תרגול דיבור',
+    en: 'Speaking Practice'
+  },
+  speakingDesc: {
+    he: 'תרגלו דיבור והגייה',
+    en: 'Practice speaking and pronunciation'
+  },
+  vocabularyLevel: {
+    he: 'הרחבת אוצר מילים',
+    en: 'Vocabulary Expansion'
+  },
+  vocabularyDesc: {
+    he: 'הרחיבו את אוצר המילים שלכם',
+    en: 'Expand your vocabulary'
+  },
+  pronunciationLevel: {
+    he: 'הגייה נכונה',
+    en: 'Correct Pronunciation'
+  },
+  pronunciationDesc: {
+    he: 'למדו הגייה נכונה של מילים',
+    en: 'Learn correct word pronunciation'
+  },
+  conversationLevel: {
+    he: 'שיחות יומיומיות',
+    en: 'Daily Conversations'
+  },
+  conversationDesc: {
+    he: 'למדו לנהל שיחות יומיומיות',
+    en: 'Learn to have daily conversations'
+  },
+  
+  // Phrases Level
+  phrase: {
+    he: 'ביטוי',
+    en: 'Phrase'
+  },
+  showExample: {
+    he: 'הצג דוגמה',
+    en: 'Show Example'
+  },
+  hideExample: {
+    he: 'הסתר דוגמה',
+    en: 'Hide Example'
+  },
+  markComplete: {
+    he: 'סמן כהושלם',
+    en: 'Mark Complete'
+  },
+  
+  // Grammar Level
+  rule: {
+    he: 'כלל',
+    en: 'Rule'
+  },
+  examples: {
+    he: 'דוגמאות',
+    en: 'Examples'
   }
 };
 

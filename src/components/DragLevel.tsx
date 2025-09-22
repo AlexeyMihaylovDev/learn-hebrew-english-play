@@ -296,10 +296,9 @@ const DragLevel: React.FC<DragLevelProps> = ({
                               : 'border-purple-200 bg-white shadow-md hover:shadow-lg'
                         }`}
                       >
-                        <div className="text-4xl font-bold text-gray-800 mb-2">
+                        <div className="text-4xl font-bold text-gray-800">
                           {item.word}
                         </div>
-                        <div className="text-2xl">{item.emoji}</div>
                         {showFeedback && (
                           <div className="absolute inset-0 flex items-center justify-center">
                             {isCorrect ? (

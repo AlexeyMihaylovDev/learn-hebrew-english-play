@@ -30,6 +30,7 @@ export interface Story {
   title: string;
   type: 'story' | 'comic';
   content: string[];
+  translations?: string[];
   images?: string[];
   level: Difficulty;
 }
