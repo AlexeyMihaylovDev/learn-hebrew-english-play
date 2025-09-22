@@ -186,3 +186,5 @@ export const getUnlockedLevels = (completedLevels: Set<string>, config: GameConf
 export const getLevelConfig = (levelId: string, config: GameConfig): LevelConfig | undefined => {
   return config.levels.find(level => level.id === levelId);
 };
+
+

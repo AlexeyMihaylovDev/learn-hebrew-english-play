@@ -220,3 +220,5 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
 };
 
 export default SettingsScreen;
+
+

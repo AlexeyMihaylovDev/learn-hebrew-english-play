@@ -77,3 +77,5 @@ export const useGameConfig = (completedLevels: Set<string>): UseGameConfigReturn
     toggleTestingMode
   };
 };
+
+
