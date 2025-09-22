@@ -65,6 +65,16 @@ const WordsLevel: React.FC<WordsLevelProps> = ({
   ];
 
   const currentWord = words[currentQuestion];
+  
+  // Shuffle options for random placement
+  const shuffledOptions = React.useMemo(() => {
+    const options = [...currentWord.options];
+    for (let i = options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [options[i], options[j]] = [options[j], options[i]];
+    }
+    return options;
+  }, [currentQuestion]);
 
   const playSound = async (text: string) => {
     if ('speechSynthesis' in window) {
@@ -187,14 +197,14 @@ const WordsLevel: React.FC<WordsLevelProps> = ({
               </div>
 
               {/* Options */}
-              <div id="options-grid" className="grid grid-cols-3 gap-6 max-w-lg mx-auto">
-                {currentWord.options.map((emoji, index) => (
+              <div id="options-grid" className="grid grid-cols-3 gap-4 sm:gap-6 max-w-lg mx-auto">
+                {shuffledOptions.map((emoji, index) => (
                   <button 
                     key={index} 
                     id={`option-${index}`}
                     onClick={() => !showFeedback && handleAnswer(emoji)} 
                     disabled={showFeedback} 
-                    className={`aspect-square p-6 rounded-2xl border-2 text-6xl relative transition-all duration-300 hover:scale-105
+                    className={`aspect-square p-4 sm:p-6 rounded-2xl border-2 text-4xl sm:text-6xl relative transition-all duration-300 hover:scale-105
                       ${showFeedback && selectedAnswer === emoji 
                         ? emoji === correctAnswer 
                           ? 'border-green-500 bg-green-100 scale-110 shadow-lg' 

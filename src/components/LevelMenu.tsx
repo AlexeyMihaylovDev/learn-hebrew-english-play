@@ -75,20 +75,21 @@ const LevelMenu: React.FC<LevelMenuProps> = ({ onBack, onSelectLevel, completedL
   return (
     <div id="level-menu-container" className="min-h-screen p-4 space-y-6">
       {/* Header */}
-      <header id="level-menu-header" className="flex items-center justify-between animate-slide-up">
-        <Button 
+      <header id="level-menu-header" className="flex flex-col sm:flex-row items-center justify-between gap-4 animate-slide-up">
+        <Button
           id="level-menu-back-btn"
-          onClick={onBack} 
-          variant="outline" 
-          size="lg" 
-          className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none hover:scale-105 shadow-lg"
+          onClick={onBack}
+          variant="outline"
+          size="lg"
+          className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none hover:scale-105 shadow-lg w-full sm:w-auto"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          {t('backToLevelMap')}
+          <span className="hidden sm:inline">{t('backToLevelMap')}</span>
+          <span className="sm:hidden">{t('back')}</span>
         </Button>
 
-        <div id="level-menu-stats" className="flex items-center gap-4">
-          <Badge id="completed-levels-badge" variant="secondary" className="text-lg px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 text-green-800 border-green-200">
+        <div id="level-menu-stats" className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+          <Badge id="completed-levels-badge" variant="secondary" className="text-sm sm:text-lg px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-green-100 to-blue-100 text-green-800 border-green-200">
             {t('completedLevels')}: {completedLevels.size}
           </Badge>
           
@@ -144,24 +145,24 @@ const LevelMenu: React.FC<LevelMenuProps> = ({ onBack, onSelectLevel, completedL
               className="bg-white/90 backdrop-blur-sm shadow-2xl animate-bounce-in border-2 border-purple-200"
               style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
-              <div className="p-8">
+              <div className="p-4 sm:p-8">
                 {/* Category Header */}
-                <div id={`category-header-${category}`} className="flex items-center gap-4 mb-6">
-                  <div className={`p-4 rounded-2xl bg-gradient-to-r ${getCategoryColor(category as Category)} text-white shadow-lg`}>
+                <div id={`category-header-${category}`} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6">
+                  <div className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-r ${getCategoryColor(category as Category)} text-white shadow-lg`}>
                     {getCategoryIcon(category as Category)}
                   </div>
-                  <div>
-                    <h2 id={`category-title-${category}`} className="text-2xl font-bold text-gray-800">
+                  <div className="text-center sm:text-left">
+                    <h2 id={`category-title-${category}`} className="text-xl sm:text-2xl font-bold text-gray-800">
                       {getCategoryTitle(category as Category)}
                     </h2>
-                    <p id={`category-description-${category}`} className="text-gray-600">
+                    <p id={`category-description-${category}`} className="text-sm sm:text-base text-gray-600">
                       {getCategoryDescription(category as Category)}
                     </p>
                   </div>
                 </div>
 
                 {/* Levels Grid */}
-                <div id={`levels-grid-${category}`} className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div id={`levels-grid-${category}`} className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   {levels.map((level, levelIndex) => {
                     const isUnlocked = isLevelUnlocked(level.id);
                     const isCompleted = completedLevels.has(level.id);
@@ -180,14 +181,14 @@ const LevelMenu: React.FC<LevelMenuProps> = ({ onBack, onSelectLevel, completedL
                               : 'border-purple-200 bg-white'
                         }`}
                       >
-                        <div className="p-6 space-y-4">
+                        <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                           {/* Level Header */}
                           <div id={`level-header-${level.id}`} className="flex items-start justify-between">
                             <div className="flex-1">
-                              <h3 id={`level-title-${level.id}`} className="text-lg font-bold text-gray-800 mb-1">
+                              <h3 id={`level-title-${level.id}`} className="text-base sm:text-lg font-bold text-gray-800 mb-1">
                                 {level.title}
                               </h3>
-                              <p id={`level-description-${level.id}`} className="text-sm text-gray-600">
+                              <p id={`level-description-${level.id}`} className="text-xs sm:text-sm text-gray-600">
                                 {level.description}
                               </p>
                             </div>
@@ -225,14 +226,14 @@ const LevelMenu: React.FC<LevelMenuProps> = ({ onBack, onSelectLevel, completedL
                             id={`level-action-btn-${level.id}`}
                             onClick={() => isUnlocked && onSelectLevel(level.id)}
                             disabled={!isUnlocked}
-                            className={`w-full font-bold transition-all duration-300 hover:scale-105 ${
+                            className={`w-full font-bold transition-all duration-300 hover:scale-105 text-sm sm:text-base ${
                               !isUnlocked 
                                 ? 'bg-gray-300 cursor-not-allowed text-gray-500' 
                                 : isCompleted 
                                   ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg' 
                                   : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
                             }`}
-                            size="lg"
+                            size="sm"
                           >
                             {!isUnlocked ? (
                               <>

@@ -47,11 +47,40 @@ const AlphabetLevel: React.FC<AlphabetLevelProps> = ({
   ];
 
   const playSound = async (text: string) => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.8;
-      speechSynthesis.speak(utterance);
+    try {
+      if ('speechSynthesis' in window) {
+        // Stop any ongoing speech
+        speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.8;
+        utterance.volume = 1.0;
+        utterance.pitch = 1.0;
+        
+        // Add event listeners for better Android compatibility
+        utterance.onstart = () => console.log('Speech started');
+        utterance.onend = () => console.log('Speech ended');
+        utterance.onerror = (event) => console.error('Speech error:', event.error);
+        
+        // For Android, we need to ensure the utterance is properly queued
+        speechSynthesis.speak(utterance);
+        
+        // Fallback for Android - try again after a short delay
+        setTimeout(() => {
+          if (speechSynthesis.speaking === false && speechSynthesis.pending === false) {
+            speechSynthesis.speak(utterance);
+          }
+        }, 100);
+      } else {
+        console.warn('Speech synthesis not supported');
+        // Fallback: show alert or visual feedback
+        alert(`🔊 ${text}`);
+      }
+    } catch (error) {
+      console.error('Speech synthesis error:', error);
+      // Fallback: show alert or visual feedback
+      alert(`🔊 ${text}`);
     }
   };
 

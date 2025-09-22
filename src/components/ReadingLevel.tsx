@@ -77,7 +77,7 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
       <header id="reading-header" className="flex items-center justify-between animate-slide-up">
         <Button 
           id="reading-back-btn"
-          onClick={onBack} 
+          onClick={() => window.location.href = '/level-menu'} 
           variant="outline" 
           size="lg" 
           className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none hover:scale-105 shadow-lg"
@@ -87,8 +87,8 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
         </Button>
 
         <div id="reading-info-container" className="flex items-center gap-4">
-          <Badge id="story-counter-badge" variant="secondary" className="text-lg px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200">
-            Story {currentStory + 1} of {stories.length}
+          <Badge id="story-counter-badge" variant="secondary" className="text-sm sm:text-lg px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200">
+            {currentStory + 1}/{stories.length}
           </Badge>
           <div id="reading-stars-container" className="flex items-center gap-1">
             {[1, 2, 3].map(starNum => (
@@ -236,9 +236,9 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
               {/* Navigation */}
               <div id="story-navigation" className="flex justify-between items-center">
                 <Button 
-                  id="previous-page-btn"
-                  onClick={handlePreviousPage}
-                  disabled={currentPage === 0}
+                  id="next-page-btn"
+                  onClick={handleNextPage}
+                  disabled={isLastPage && isLastStory}
                   variant="outline"
                   size="lg"
                   className="rounded-full w-16 h-16 hover:scale-110 transition-transform disabled:opacity-50 bg-white shadow-lg border-purple-200"
@@ -250,7 +250,7 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                   <div className="w-full bg-gray-200 h-3 rounded-full">
                     <div 
                       id="story-progress-bar"
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500 shadow-lg" 
+                      className="bg-gradient-to-l from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500 shadow-lg" 
                       style={{
                         width: `${((currentPage + 1) / currentStoryData.content.length) * 100}%`
                       }} 
@@ -259,9 +259,9 @@ const ReadingLevel: React.FC<ReadingLevelProps> = ({
                 </div>
 
                 <Button 
-                  id="next-page-btn"
-                  onClick={handleNextPage}
-                  disabled={isLastPage && isLastStory}
+                  id="previous-page-btn"
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 0}
                   variant="outline"
                   size="lg"
                   className="rounded-full w-16 h-16 hover:scale-110 transition-transform disabled:opacity-50 bg-white shadow-lg border-purple-200"

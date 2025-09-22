@@ -78,7 +78,7 @@ const AdvancedReadingLevel: React.FC<AdvancedReadingLevelProps> = ({
       <header id="advanced-reading-header" className="flex items-center justify-between animate-slide-up">
         <Button 
           id="advanced-reading-back-btn"
-          onClick={onBack} 
+          onClick={() => window.location.href = '/level-menu'} 
           variant="outline" 
           size="lg" 
           className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none hover:scale-105 shadow-lg"
@@ -88,8 +88,8 @@ const AdvancedReadingLevel: React.FC<AdvancedReadingLevelProps> = ({
         </Button>
 
         <div id="advanced-reading-info-container" className="flex items-center gap-4">
-          <Badge id="advanced-story-counter-badge" variant="secondary" className="text-lg px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200">
-            {t('story')} {currentStory + 1} {t('of')} {stories.length}
+          <Badge id="advanced-story-counter-badge" variant="secondary" className="text-sm sm:text-lg px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200">
+            {currentStory + 1}/{stories.length}
           </Badge>
           <div id="advanced-reading-stars-container" className="flex items-center gap-1">
             {[1, 2, 3].map(starNum => (

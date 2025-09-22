@@ -102,6 +102,26 @@ const DragLevel: React.FC<DragLevelProps> = ({
   ];
 
   const currentQuestionData = dragQuestions[currentQuestion];
+  
+  // Shuffle items and drop zones for random placement
+  const shuffledData = React.useMemo(() => {
+    const items = [...currentQuestionData.items];
+    const dropZones = [...currentQuestionData.dropZones];
+    
+    // Shuffle items
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    
+    // Shuffle drop zones
+    for (let i = dropZones.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [dropZones[i], dropZones[j]] = [dropZones[j], dropZones[i]];
+    }
+    
+    return { items, dropZones };
+  }, [currentQuestion]);
 
   const playSound = async (text: string) => {
     if ('speechSynthesis' in window) {
@@ -255,8 +275,8 @@ const DragLevel: React.FC<DragLevelProps> = ({
               {/* Drag and Drop Area */}
               <div id="drag-drop-area" className="space-y-8">
                 {/* Drop Zones */}
-                <div id="drop-zones" className="grid grid-cols-3 gap-6">
-                  {currentQuestionData.dropZones.map((zone, index) => (
+                <div id="drop-zones" className="grid grid-cols-3 gap-4 sm:gap-6">
+                  {shuffledData.dropZones.map((zone, index) => (
                     <div
                       key={zone.id}
                       id={`drop-zone-${index}`}
@@ -268,15 +288,15 @@ const DragLevel: React.FC<DragLevelProps> = ({
                       onDragOver={handleDragOver}
                       onDrop={(e) => handleDrop(e, zone.position)}
                     >
-                      <div className="text-6xl mb-2">{zone.emoji}</div>
+                      <div className="text-4xl sm:text-6xl mb-2">{zone.emoji}</div>
                       <div className="text-sm text-gray-600">Drop here</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Draggable Items */}
-                <div id="draggable-items" className="grid grid-cols-3 gap-6">
-                  {currentQuestionData.items.map((item, index) => {
+                <div id="draggable-items" className="grid grid-cols-3 gap-4 sm:gap-6">
+                  {shuffledData.items.map((item, index) => {
                     const isPlaced = draggedItems[item.id] !== undefined;
                     const isCorrect = correctAnswers[item.id] === draggedItems[item.id];
                     
