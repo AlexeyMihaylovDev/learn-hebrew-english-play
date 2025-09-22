@@ -15,12 +15,19 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Game-specific variants
+        game: "game-button bg-gradient-primary text-white border-none hover:scale-105 hover:shadow-glow",
+        gameSecondary: "game-button bg-gradient-secondary text-white border-none hover:scale-105",
+        gameSuccess: "game-button bg-gradient-success text-white border-none hover:scale-105",
+        gameAccent: "game-button bg-gradient-accent text-white border-none hover:scale-105",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        // Game-specific sizes
+        gameXl: "h-16 rounded-2xl px-10 text-xl font-bold",
       },
     },
     defaultVariants: {

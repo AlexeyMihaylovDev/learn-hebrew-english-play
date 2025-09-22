@@ -22,10 +22,19 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -47,6 +56,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Game-specific colors
+        "star-gold": "hsl(var(--star-gold))",
+        "level-locked": "hsl(var(--level-locked))",
+        "level-completed": "hsl(var(--level-completed))",
+        "xp-bar": "hsl(var(--xp-bar))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -65,25 +79,50 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "bounce-in": {
+          "0%": { opacity: "0", transform: "scale(0.3) translateY(20px)" },
+          "50%": { opacity: "1", transform: "scale(1.05)" },
+          "70%": { transform: "scale(0.98)" },
+          "100%": { opacity: "1", transform: "scale(1) translateY(0)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "var(--shadow-soft)" },
+          "50%": { boxShadow: "var(--shadow-glow)" },
+        },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "25%": { transform: "rotate(-3deg)" },
+          "75%": { transform: "rotate(3deg)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bounce-in": "bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        wiggle: "wiggle 0.5s ease-in-out",
+        float: "float 3s ease-in-out infinite",
+        "slide-up": "slide-up 0.3s ease-out",
+        "scale-in": "scale-in 0.2s ease-out",
       },
     },
   },

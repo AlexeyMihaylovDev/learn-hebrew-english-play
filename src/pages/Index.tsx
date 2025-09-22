@@ -1,13 +1,42 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from 'react';
+import LanguageSelector from '@/components/LanguageSelector';
+import LevelMap from '@/components/LevelMap';
+import AlphabetLevel from '@/components/AlphabetLevel';
+
+type AppState = 'language-select' | 'level-map' | 'alphabet-level';
 
 const Index = () => {
+  const [appState, setAppState] = useState<AppState>('language-select');
+
+  const handleLanguageSelected = () => {
+    setAppState('level-map');
+  };
+
+  const handleLevelSelected = (levelId: number) => {
+    if (levelId === 1) {
+      setAppState('alphabet-level');
+    }
+    // Add more levels as needed
+  };
+
+  const handleBackToLevelMap = () => {
+    setAppState('level-map');
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen bg-gradient-to-br from-background via-background/95 to-background/90">
+      {appState === 'language-select' && (
+        <LanguageSelector onLanguageSelected={handleLanguageSelected} />
+      )}
+      
+      {appState === 'level-map' && (
+        <LevelMap onSelectLevel={handleLevelSelected} />
+      )}
+      
+      {appState === 'alphabet-level' && (
+        <AlphabetLevel onBack={handleBackToLevelMap} />
+      )}
+    </main>
   );
 };
 
