@@ -63,6 +63,14 @@ const AlphabetLevel: React.FC<AlphabetLevelProps> = ({
     }, 1500);
   };
   const currentAlphabet = alphabet[currentLetter];
+
+  // Safety check to prevent undefined errors
+  if (!currentAlphabet) {
+    return <div className="min-h-screen p-4 flex items-center justify-center">
+      <p className="text-lg">Loading...</p>
+    </div>;
+  }
+
   return <div className="min-h-screen p-4 space-y-6">
       {/* Header */}
       <header className="flex items-center justify-between animate-slide-up">
