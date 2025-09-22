@@ -19,9 +19,10 @@ interface Level {
 
 interface LevelMapProps {
   onSelectLevel: (levelId: number) => void;
+  completedLevels: Set<number>;
 }
 
-const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel }) => {
+const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels }) => {
   const { t } = useLanguage();
 
   const levels: Level[] = [
@@ -30,8 +31,8 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel }) => {
       titleKey: 'alphabetLevel',
       descKey: 'alphabetDesc',
       icon: alphabetIcon,
-      completed: false,
-      stars: 0,
+      completed: completedLevels.has(1),
+      stars: completedLevels.has(1) ? 3 : 0,
       locked: false
     },
     {
@@ -39,18 +40,18 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel }) => {
       titleKey: 'wordsLevel',
       descKey: 'wordsDesc',
       icon: wordsIcon,
-      completed: false,
-      stars: 0,
-      locked: true
+      completed: completedLevels.has(2),
+      stars: completedLevels.has(2) ? 3 : 0,
+      locked: !completedLevels.has(1)
     },
     {
       id: 3,
       titleKey: 'phrasesLevel',
       descKey: 'phrasesDesc',
       icon: alphabetIcon, // Placeholder
-      completed: false,
-      stars: 0,
-      locked: true
+      completed: completedLevels.has(3),
+      stars: completedLevels.has(3) ? 3 : 0,
+      locked: !completedLevels.has(2)
     }
   ];
 
