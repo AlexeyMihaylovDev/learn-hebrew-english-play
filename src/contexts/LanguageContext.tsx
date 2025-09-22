@@ -456,6 +456,110 @@ const translations: Translation = {
   examples: {
     he: 'דוגמאות',
     en: 'Examples'
+  },
+  
+  // Settings
+  settings: {
+    he: 'הגדרות',
+    en: 'Settings'
+  },
+  levelManagement: {
+    he: 'ניהול רמות',
+    en: 'Level Management'
+  },
+  unlockAllLevels: {
+    he: 'פתח את כל הרמות',
+    en: 'Unlock All Levels'
+  },
+  unlockAllLevelsDesc: {
+    he: 'פתח את כל הרמות לבדיקה ופיתוח',
+    en: 'Unlock all levels for testing and development'
+  },
+  testingMode: {
+    he: 'מצב בדיקה',
+    en: 'Testing Mode'
+  },
+  testingModeDesc: {
+    he: 'מצב מיוחד לבדיקת הפונקציונליות',
+    en: 'Special mode for testing functionality'
+  },
+  currentStatus: {
+    he: 'סטטוס נוכחי',
+    en: 'Current Status'
+  },
+  levelUnlockStatus: {
+    he: 'סטטוס פתיחת רמות',
+    en: 'Level Unlock Status'
+  },
+  allUnlocked: {
+    he: 'כל הרמות פתוחות',
+    en: 'All Unlocked'
+  },
+  testingModeStatus: {
+    he: 'סטטוס מצב בדיקה',
+    en: 'Testing Mode Status'
+  },
+  enabled: {
+    he: 'מופעל',
+    en: 'Enabled'
+  },
+  disabled: {
+    he: 'מבוטל',
+    en: 'Disabled'
+  },
+  actions: {
+    he: 'פעולות',
+    en: 'Actions'
+  },
+  resetSettings: {
+    he: 'איפוס הגדרות',
+    en: 'Reset Settings'
+  },
+  saveSettings: {
+    he: 'שמור הגדרות',
+    en: 'Save Settings'
+  },
+  settingsSaved: {
+    he: 'ההגדרות נשמרו בהצלחה!',
+    en: 'Settings saved successfully!'
+  },
+  futureFeatures: {
+    he: 'תכונות עתידיות',
+    en: 'Future Features'
+  },
+  premiumLevels: {
+    he: 'רמות פרימיום',
+    en: 'Premium Levels'
+  },
+  premiumLevelsDesc: {
+    he: 'בעתיד תוכלו לפתוח רמות נוספות באמצעות תשלום. זה יאפשר לכם גישה לתוכן מתקדם יותר ולפיצ\'רים מיוחדים.',
+    en: 'In the future, you will be able to unlock additional levels through payment. This will give you access to more advanced content and special features.'
+  },
+  
+  // Coming Soon Messages
+  comingSoon: {
+    he: 'בקרוב',
+    en: 'Coming Soon'
+  },
+  listeningLevelComingSoon: {
+    he: 'רמת האזנה והבנה תכלול תרגילי האזנה, הבנת דיבור, ופיתוח כישורי הבנה.',
+    en: 'The listening level will include listening exercises, speech comprehension, and developing understanding skills.'
+  },
+  speakingLevelComingSoon: {
+    he: 'רמת תרגול דיבור תכלול תרגילי דיבור, הגייה, ושיחות אינטראקטיביות.',
+    en: 'The speaking level will include speaking exercises, pronunciation, and interactive conversations.'
+  },
+  vocabularyLevelComingSoon: {
+    he: 'רמת הרחבת אוצר מילים תכלול מילים חדשות, ביטויים, וטכניקות לזכירה.',
+    en: 'The vocabulary level will include new words, expressions, and memorization techniques.'
+  },
+  pronunciationLevelComingSoon: {
+    he: 'רמת הגייה נכונה תכלול תרגילי הגייה, פונטיקה, ושיפור הדיבור.',
+    en: 'The pronunciation level will include pronunciation exercises, phonetics, and speech improvement.'
+  },
+  conversationLevelComingSoon: {
+    he: 'רמת שיחות יומיומיות תכלול דיאלוגים, מצבים יומיומיים, ותרגול שיחות.',
+    en: 'The conversation level will include dialogues, daily situations, and conversation practice.'
   }
 };
 

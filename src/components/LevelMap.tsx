@@ -3,9 +3,17 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Star, Lock, Play } from 'lucide-react';
+import { useSettings } from '@/contexts/SettingsContext';
+import { Star, Lock, Play, Settings } from 'lucide-react';
 import alphabetIcon from '@/assets/alphabet-icon.jpg';
 import wordsIcon from '@/assets/words-icon.jpg';
+import phrasesIcon from '@/assets/phrases-icon.svg';
+import grammarIcon from '@/assets/grammar-icon.svg';
+import listeningIcon from '@/assets/listening-icon.svg';
+import speakingIcon from '@/assets/speaking-icon.svg';
+import vocabularyIcon from '@/assets/vocabulary-icon.svg';
+import pronunciationIcon from '@/assets/pronunciation-icon.svg';
+import conversationIcon from '@/assets/conversation-icon.svg';
 
 interface Level {
   id: number;
@@ -21,10 +29,12 @@ interface LevelMapProps {
   onSelectLevel: (levelId: number) => void;
   completedLevels: Set<number>;
   onShowLevelMenu: () => void;
+  onShowSettings: () => void;
 }
 
-const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onShowLevelMenu }) => {
+const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onShowLevelMenu, onShowSettings }) => {
   const { t } = useLanguage();
+  const { unlockAllLevels } = useSettings();
 
   const levels: Level[] = [
     {
@@ -34,7 +44,7 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onS
       icon: alphabetIcon,
       completed: completedLevels.has(1),
       stars: completedLevels.has(1) ? 3 : 0,
-      locked: false
+      locked: false // Level 1 is always unlocked
     },
     {
       id: 2,
@@ -43,76 +53,90 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onS
       icon: wordsIcon,
       completed: completedLevels.has(2),
       stars: completedLevels.has(2) ? 3 : 0,
-      locked: !completedLevels.has(1)
+      locked: !unlockAllLevels && !completedLevels.has(1)
     },
     {
       id: 3,
       titleKey: 'phrasesLevel',
       descKey: 'phrasesDesc',
-      icon: alphabetIcon,
+      icon: phrasesIcon,
       completed: completedLevels.has(3),
       stars: completedLevels.has(3) ? 3 : 0,
-      locked: !completedLevels.has(2)
+      locked: !unlockAllLevels && !completedLevels.has(2)
     },
     {
       id: 4,
       titleKey: 'grammarLevel',
       descKey: 'grammarDesc',
-      icon: wordsIcon,
+      icon: grammarIcon,
       completed: completedLevels.has(4),
       stars: completedLevels.has(4) ? 3 : 0,
-      locked: !completedLevels.has(3)
+      locked: !unlockAllLevels && !completedLevels.has(3)
     },
     {
       id: 5,
       titleKey: 'listeningLevel',
       descKey: 'listeningDesc',
-      icon: alphabetIcon,
+      icon: listeningIcon,
       completed: completedLevels.has(5),
       stars: completedLevels.has(5) ? 3 : 0,
-      locked: !completedLevels.has(4)
+      locked: !unlockAllLevels && !completedLevels.has(4)
     },
     {
       id: 6,
       titleKey: 'speakingLevel',
       descKey: 'speakingDesc',
-      icon: wordsIcon,
+      icon: speakingIcon,
       completed: completedLevels.has(6),
       stars: completedLevels.has(6) ? 3 : 0,
-      locked: !completedLevels.has(5)
+      locked: !unlockAllLevels && !completedLevels.has(5)
     },
     {
       id: 7,
       titleKey: 'vocabularyLevel',
       descKey: 'vocabularyDesc',
-      icon: alphabetIcon,
+      icon: vocabularyIcon,
       completed: completedLevels.has(7),
       stars: completedLevels.has(7) ? 3 : 0,
-      locked: !completedLevels.has(6)
+      locked: !unlockAllLevels && !completedLevels.has(6)
     },
     {
       id: 8,
       titleKey: 'pronunciationLevel',
       descKey: 'pronunciationDesc',
-      icon: wordsIcon,
+      icon: pronunciationIcon,
       completed: completedLevels.has(8),
       stars: completedLevels.has(8) ? 3 : 0,
-      locked: !completedLevels.has(7)
+      locked: !unlockAllLevels && !completedLevels.has(7)
     },
     {
       id: 9,
       titleKey: 'conversationLevel',
       descKey: 'conversationDesc',
-      icon: alphabetIcon,
+      icon: conversationIcon,
       completed: completedLevels.has(9),
       stars: completedLevels.has(9) ? 3 : 0,
-      locked: !completedLevels.has(8)
+      locked: !unlockAllLevels && !completedLevels.has(8)
     }
   ];
 
   return (
     <div id="level-map-container" className="min-h-screen p-4 space-y-6">
       <header id="level-map-header" className="text-center space-y-4 animate-slide-up">
+        {/* Settings Button */}
+        <div className="flex justify-end mb-4">
+          <Button
+            id="settings-btn"
+            onClick={onShowSettings}
+            variant="outline"
+            size="lg"
+            className="bg-gradient-to-r from-gray-500 to-gray-600 text-white border-none hover:scale-105 shadow-lg"
+          >
+            <Settings className="w-5 h-5 mr-2" />
+            {t('settings')}
+          </Button>
+        </div>
+
         <h1 id="level-map-title" className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
           {t('levelMap')}
         </h1>
@@ -196,7 +220,11 @@ const LevelMap: React.FC<LevelMapProps> = ({ onSelectLevel, completedLevels, onS
                 {/* Action Button */}
                 <Button
                   id={`level-action-btn-${level.id}`}
-                  onClick={() => !level.locked && onSelectLevel(level.id)}
+                  onClick={() => {
+                    if (!level.locked) {
+                      onSelectLevel(level.id);
+                    }
+                  }}
                   disabled={level.locked}
                   className={`w-full font-bold transition-all duration-300 hover:scale-105 ${
                     level.locked 
